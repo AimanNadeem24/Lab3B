@@ -1,0 +1,139 @@
+import 'package:flutter/material.dart';
+
+class LabDesignScreen extends StatelessWidget {
+  const LabDesignScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        padding: const EdgeInsets.all(20.0), // Adding padding for the entire list
+        children: [
+          // Title Section
+          Center(
+            child: Text(
+              'LAB # 3',
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          // Image Container
+          Center(
+            child: Container(
+              width: 250,
+              height: 150,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                  'https://images.pexels.com/photos/757889/pexels-photo-757889.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                  fit: BoxFit.cover,
+                  errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                    return const Center(child: Text('Image failed to load', style: TextStyle(color: Colors.white)));
+                  },
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          // Stacked Container Section
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              // Blue Box
+              Container(
+                width: 150,
+                height: 150,
+                color: Colors.blue,
+              ),
+              // Overlapping Green Box
+              Positioned(
+                top: 20,
+                left: 60,
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.green,
+                ),
+              ),
+              // Vertical Red Box with Numbers
+              Positioned(
+                right: 60,
+                top: 20,
+                child: Container(
+                  width: 50,
+                  height: 200,
+                  color: Colors.red,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(10, (index) {
+                      return Text(
+                        '${index + 1}',
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
+                      );
+                    }),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Instructional Text
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: const Text(
+                'PRACTICE MORE THAN THIS. IT WILL HELP YOU TO DESIGN COMPLEX MOBILE APP DESIGNS.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          // Footer Section
+          Container(
+            color: Colors.green,
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    'LEADING',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                ),
+                // Circular Image in the middle
+                ClipOval(
+                  child: Image.network(
+                    'https://images.pexels.com/photos/757889/pexels-photo-757889.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
+                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                      return const Center(child: Text('Failed to load', style: TextStyle(color: Colors.white)));
+                    },
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: Text(
+                    'TRAILING',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
